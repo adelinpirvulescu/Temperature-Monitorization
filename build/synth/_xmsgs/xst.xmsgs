@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="Xst" num="863" delta="new" >&quot;<arg fmt="%s" index="1">..\..\division.v</arg>&quot; line <arg fmt="%d" index="2">7</arg>: Name conflict (<arg fmt="%s" index="3">&lt;d&gt; and &lt;D&gt;, renaming d as d_rnm0</arg>).
+</msg>
+
+<msg type="warning" file="Xst" num="863" delta="new" >&quot;<arg fmt="%s" index="1">..\..\division.v</arg>&quot; line <arg fmt="%d" index="2">6</arg>: Name conflict (<arg fmt="%s" index="3">&lt;n&gt; and &lt;N&gt;, renaming n as n_rnm0</arg>).
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="new" >Register &lt;<arg fmt="%s" index="1">i</arg>&gt; in unit &lt;<arg fmt="%s" index="2">division</arg>&gt; has a constant value of <arg fmt="%s" index="3">00000</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="info" file="Xst" num="2679" delta="new" >Register &lt;<arg fmt="%s" index="1">i</arg>&gt; in unit &lt;<arg fmt="%s" index="2">output_display</arg>&gt; has a constant value of <arg fmt="%s" index="3">1001</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="new" >Signal &lt;<arg fmt="%s" index="1">n_rnm0</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="new" >Signal &lt;<arg fmt="%s" index="1">d_rnm0</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="new" >Signal &lt;<arg fmt="%s" index="1">val_temp</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+</messages>
+

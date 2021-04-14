@@ -1,0 +1,548 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> WARNING:Xst:1583 - You are using an internal switch '-use_new_parser'.
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "tester.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "tester"
+Output Format                      : NGC
+Target Device                      : xc3s500e-4-fg320
+
+---- Source Options
+Use New Parser                     : no
+Top Module Name                    : temperature_top
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "..\..\division.v" in library work
+Compiling verilog file "..\..\output_display.v" in library work
+Module <division> compiled
+Compiling verilog file "..\..\sensors_input.v" in library work
+Module <output_display> compiled
+Compiling verilog file "..\..\temperature_top.v" in library work
+Module <sensors_input> compiled
+Module <temperature_top> compiled
+No errors in compilation
+Analysis of file <"tester.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <temperature_top> in library <work>.
+
+Analyzing hierarchy for module <sensors_input> in library <work>.
+
+Analyzing hierarchy for module <division> in library <work>.
+
+Analyzing hierarchy for module <output_display> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <temperature_top>.
+Module <temperature_top> is correct for synthesis.
+ 
+Analyzing module <sensors_input> in library <work>.
+Module <sensors_input> is correct for synthesis.
+ 
+Analyzing module <division> in library <work>.
+WARNING:Xst:863 - "..\..\division.v" line 7: Name conflict (<d> and <D>, renaming d as d_rnm0).
+WARNING:Xst:863 - "..\..\division.v" line 6: Name conflict (<n> and <N>, renaming n as n_rnm0).
+Module <division> is correct for synthesis.
+ 
+Analyzing module <output_display> in library <work>.
+Module <output_display> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <i> in unit <division> has a constant value of 00000 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <i> in unit <output_display> has a constant value of 1001 during circuit operation. The register is replaced by logic.
+
+Synthesizing Unit <sensors_input>.
+    Related source file is "..\..\sensors_input.v".
+    Found 3-bit adder for signal <nr_active_sensors_o$add0000> created at line 11.
+    Found 2-bit adder for signal <nr_active_sensors_o$addsub0001> created at line 11.
+    Found 1-bit adder carry out for signal <nr_active_sensors_o$addsub0003> created at line 11.
+    Found 2-bit adder carry out for signal <nr_active_sensors_o$addsub0004> created at line 11.
+    Found 10-bit adder for signal <temp_sum_o$addsub0002> created at line 9.
+    Found 10-bit adder carry out for signal <temp_sum_o$addsub0003> created at line 9.
+    Found 8-bit adder carry out for signal <temp_sum_o$addsub0004> created at line 9.
+    Found 9-bit adder carry out for signal <temp_sum_o$addsub0005> created at line 9.
+    Summary:
+	inferred   8 Adder/Subtractor(s).
+Unit <sensors_input> synthesized.
+
+
+Synthesizing Unit <division>.
+    Related source file is "..\..\division.v".
+WARNING:Xst:646 - Signal <n_rnm0> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <d_rnm0> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 16-bit subtractor for signal <$sub0000> created at line 22.
+    Found 16-bit subtractor for signal <$sub0001> created at line 22.
+    Found 16-bit subtractor for signal <$sub0002> created at line 22.
+    Found 16-bit subtractor for signal <$sub0003> created at line 22.
+    Found 16-bit subtractor for signal <$sub0004> created at line 22.
+    Found 16-bit subtractor for signal <$sub0005> created at line 22.
+    Found 16-bit subtractor for signal <$sub0006> created at line 22.
+    Found 16-bit subtractor for signal <$sub0007> created at line 22.
+    Found 16-bit subtractor for signal <$sub0008> created at line 22.
+    Found 16-bit subtractor for signal <$sub0009> created at line 22.
+    Found 16-bit subtractor for signal <$sub0010> created at line 22.
+    Found 16-bit subtractor for signal <$sub0011> created at line 22.
+    Found 16-bit subtractor for signal <$sub0012> created at line 22.
+    Found 16-bit subtractor for signal <$sub0013> created at line 22.
+    Found 16-bit subtractor for signal <$sub0014> created at line 22.
+    Found 16-bit subtractor for signal <$sub0015> created at line 22.
+    Found 16-bit comparator greatequal for signal <Q_0$cmp_ge0000> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0000> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0001> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0002> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0003> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0004> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0005> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0006> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0007> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0008> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0009> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0010> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0011> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0012> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0013> created at line 21.
+    Found 16-bit comparator greatequal for signal <R$cmp_ge0014> created at line 21.
+    Summary:
+	inferred  16 Adder/Subtractor(s).
+	inferred  16 Comparator(s).
+Unit <division> synthesized.
+
+
+Synthesizing Unit <output_display>.
+    Related source file is "..\..\output_display.v".
+WARNING:Xst:646 - Signal <val_temp> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 18-bit subtractor for signal <$sub0000> created at line 20.
+    Found 16-bit comparator greatequal for signal <alert_o$cmp_ge0000> created at line 18.
+    Found 16-bit comparator lessequal for signal <alert_o$cmp_le0000> created at line 18.
+    Found 8-bit adder for signal <coded_out_o$addsub0000> created at line 23.
+    Found 18-bit comparator greatequal for signal <coded_out_o$cmp_ge0000> created at line 20.
+    Found 16-bit comparator greater for signal <coded_out_o$cmp_gt0000> created at line 31.
+    Found 8-bit adder for signal <old_coded_out_o_10$addsub0000> created at line 23.
+    Found 18-bit comparator greatequal for signal <old_coded_out_o_10$cmp_ge0000> created at line 20.
+    Found 8-bit adder for signal <old_coded_out_o_12$addsub0000> created at line 23.
+    Found 18-bit comparator greatequal for signal <old_coded_out_o_12$cmp_ge0000> created at line 20.
+    Found 8-bit adder for signal <old_coded_out_o_14$addsub0000> created at line 23.
+    Found 18-bit comparator greatequal for signal <old_coded_out_o_14$cmp_ge0000> created at line 20.
+    Found 18-bit comparator greatequal for signal <old_coded_out_o_2$cmp_ge0000> created at line 20.
+    Found 8-bit adder for signal <old_coded_out_o_4$addsub0000> created at line 23.
+    Found 18-bit comparator greatequal for signal <old_coded_out_o_4$cmp_ge0000> created at line 20.
+    Found 8-bit adder for signal <old_coded_out_o_6$addsub0000> created at line 23.
+    Found 18-bit comparator greatequal for signal <old_coded_out_o_6$cmp_ge0000> created at line 20.
+    Found 8-bit adder for signal <old_coded_out_o_8$addsub0000> created at line 23.
+    Found 18-bit comparator greatequal for signal <old_coded_out_o_8$cmp_ge0000> created at line 20.
+    Found 16-bit adder for signal <old_val_temp_1$addsub0000> created at line 16.
+    Found 18-bit comparator greatequal for signal <old_val_temp_1$cmp_ge0000> created at line 15.
+    Summary:
+	inferred   9 Adder/Subtractor(s).
+	inferred  12 Comparator(s).
+Unit <output_display> synthesized.
+
+
+Synthesizing Unit <temperature_top>.
+    Related source file is "..\..\temperature_top.v".
+Unit <temperature_top> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 33
+ 1-bit adder carry out                                 : 1
+ 10-bit adder                                          : 1
+ 10-bit adder carry out                                : 1
+ 16-bit adder                                          : 1
+ 16-bit subtractor                                     : 16
+ 18-bit subtractor                                     : 1
+ 2-bit adder                                           : 1
+ 2-bit adder carry out                                 : 1
+ 3-bit adder                                           : 1
+ 8-bit adder                                           : 7
+ 8-bit adder carry out                                 : 1
+ 9-bit adder carry out                                 : 1
+# Comparators                                          : 28
+ 16-bit comparator greatequal                          : 17
+ 16-bit comparator greater                             : 1
+ 16-bit comparator lessequal                           : 1
+ 18-bit comparator greatequal                          : 9
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 33
+ 1-bit adder carry out                                 : 1
+ 10-bit adder                                          : 1
+ 10-bit adder carry out                                : 1
+ 15-bit subtractor                                     : 15
+ 16-bit adder                                          : 1
+ 16-bit subtractor                                     : 1
+ 18-bit subtractor                                     : 1
+ 2-bit adder                                           : 1
+ 2-bit adder carry out                                 : 1
+ 3-bit adder                                           : 1
+ 8-bit adder                                           : 7
+ 8-bit adder carry out                                 : 1
+ 9-bit adder carry out                                 : 1
+# Comparators                                          : 28
+ 16-bit comparator greatequal                          : 17
+ 16-bit comparator greater                             : 1
+ 16-bit comparator lessequal                           : 1
+ 18-bit comparator greatequal                          : 9
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <temperature_top> ...
+
+Optimizing unit <sensors_input> ...
+
+Optimizing unit <division> ...
+
+Optimizing unit <output_display> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block temperature_top, actual ratio is 9.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Found no macro
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : tester.ngr
+Top Level Output File Name         : tester
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 54
+
+Cell Usage :
+# BELS                             : 1636
+#      GND                         : 1
+#      INV                         : 2
+#      LUT1                        : 10
+#      LUT2                        : 48
+#      LUT3                        : 492
+#      LUT4                        : 240
+#      MULT_AND                    : 20
+#      MUXCY                       : 505
+#      MUXF5                       : 10
+#      VCC                         : 1
+#      XORCY                       : 307
+# IO Buffers                       : 54
+#      IBUF                        : 45
+#      OBUF                        : 9
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s500efg320-4 
+
+ Number of Slices:                      433  out of   4656     9%  
+ Number of 4 input LUTs:                792  out of   9312     8%  
+ Number of IOs:                          54
+ Number of bonded IOBs:                  54  out of    232    23%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+No clock signals found in this design
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: 94.465ns
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 1510201255172969600000000000000 / 8
+-------------------------------------------------------------------------
+Delay:               94.465ns (Levels of Logic = 112)
+  Source:            sensors_en_i<0> (PAD)
+  Destination:       led_output_o<5> (PAD)
+
+  Data Path: sensors_en_i<0> to led_output_o<5>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            10   1.218   1.057  sensors_en_i_0_IBUF (sensors_en_i_0_IBUF)
+     LUT4:I0->O           37   0.704   1.439  A/Madd_nr_active_sensors_o_addsub0004_lut<0>1 (A/Madd_nr_active_sensors_o_addsub0004_lut<0>)
+     LUT2:I0->O            1   0.704   0.000  B/Msub__sub0000_Madd_lut<0>1 (B/Msub__sub0000_Madd_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  B/Msub__sub0000_Madd_cy<0> (B/Msub__sub0000_Madd_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  B/Msub__sub0000_Madd_cy<1> (B/Msub__sub0000_Madd_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  B/Msub__sub0000_Madd_cy<2> (B/Msub__sub0000_Madd_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  B/Msub__sub0000_Madd_cy<3> (B/Msub__sub0000_Madd_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  B/Msub__sub0000_Madd_cy<4> (B/Msub__sub0000_Madd_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  B/Msub__sub0000_Madd_cy<5> (B/Msub__sub0000_Madd_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  B/Msub__sub0000_Madd_cy<6> (B/Msub__sub0000_Madd_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  B/Msub__sub0000_Madd_cy<7> (B/Msub__sub0000_Madd_cy<7>)
+     MUXCY:CI->O           0   0.059   0.000  B/Msub__sub0000_Madd_cy<8> (B/Msub__sub0000_Madd_cy<8>)
+     XORCY:CI->O          16   0.804   1.209  B/Msub__sub0000_Madd_xor<9> (B/_sub0000<9>)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0001_lut<8>1 (B/Mcompar_R_cmp_ge0001_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0001_cy<8> (B/Mcompar_R_cmp_ge0001_cy<8>)
+     MUXCY:CI->O          40   0.459   1.440  B/Mcompar_R_cmp_ge0001_cy<9> (B/R_cmp_ge0001)
+     LUT4:I0->O            3   0.704   0.706  B/R_mux00241 (B/R_mux0024)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0002_lut<8> (B/Mcompar_R_cmp_ge0002_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0002_cy<8> (B/Mcompar_R_cmp_ge0002_cy<8>)
+     MUXCY:CI->O          40   0.459   1.440  B/Mcompar_R_cmp_ge0002_cy<9> (B/R_cmp_ge0002)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux00401 (B/R_mux0040)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0003_lut<8> (B/Mcompar_R_cmp_ge0003_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0003_cy<8> (B/Mcompar_R_cmp_ge0003_cy<8>)
+     MUXCY:CI->O          40   0.459   1.440  B/Mcompar_R_cmp_ge0003_cy<9> (B/R_cmp_ge0003)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux00561 (B/R_mux0056)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0004_lut<8> (B/Mcompar_R_cmp_ge0004_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0004_cy<8> (B/Mcompar_R_cmp_ge0004_cy<8>)
+     MUXCY:CI->O          40   0.459   1.440  B/Mcompar_R_cmp_ge0004_cy<9> (B/R_cmp_ge0004)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux00721 (B/R_mux0072)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0005_lut<8> (B/Mcompar_R_cmp_ge0005_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0005_cy<8> (B/Mcompar_R_cmp_ge0005_cy<8>)
+     MUXCY:CI->O          39   0.459   1.439  B/Mcompar_R_cmp_ge0005_cy<9> (B/R_cmp_ge0005)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux00881 (B/R_mux0088)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0006_lut<8> (B/Mcompar_R_cmp_ge0006_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0006_cy<8> (B/Mcompar_R_cmp_ge0006_cy<8>)
+     MUXCY:CI->O          39   0.459   1.439  B/Mcompar_R_cmp_ge0006_cy<9> (B/R_cmp_ge0006)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux01041 (B/R_mux0104)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0007_lut<8> (B/Mcompar_R_cmp_ge0007_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0007_cy<8> (B/Mcompar_R_cmp_ge0007_cy<8>)
+     MUXCY:CI->O          39   0.459   1.439  B/Mcompar_R_cmp_ge0007_cy<9> (B/R_cmp_ge0007)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux01201 (B/R_mux0120)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0008_lut<8> (B/Mcompar_R_cmp_ge0008_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0008_cy<8> (B/Mcompar_R_cmp_ge0008_cy<8>)
+     MUXCY:CI->O          39   0.459   1.439  B/Mcompar_R_cmp_ge0008_cy<9> (B/R_cmp_ge0008)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux01361 (B/R_mux0136)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0009_lut<8> (B/Mcompar_R_cmp_ge0009_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0009_cy<8> (B/Mcompar_R_cmp_ge0009_cy<8>)
+     MUXCY:CI->O          39   0.459   1.439  B/Mcompar_R_cmp_ge0009_cy<9> (B/R_cmp_ge0009)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux01521 (B/R_mux0152)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0010_lut<8> (B/Mcompar_R_cmp_ge0010_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0010_cy<8> (B/Mcompar_R_cmp_ge0010_cy<8>)
+     MUXCY:CI->O          39   0.459   1.439  B/Mcompar_R_cmp_ge0010_cy<9> (B/R_cmp_ge0010)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux01681 (B/R_mux0168)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0011_lut<8> (B/Mcompar_R_cmp_ge0011_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0011_cy<8> (B/Mcompar_R_cmp_ge0011_cy<8>)
+     MUXCY:CI->O          40   0.459   1.440  B/Mcompar_R_cmp_ge0011_cy<9> (B/R_cmp_ge0011)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux01841 (B/R_mux0184)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0012_lut<8> (B/Mcompar_R_cmp_ge0012_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0012_cy<8> (B/Mcompar_R_cmp_ge0012_cy<8>)
+     MUXCY:CI->O          39   0.459   1.439  B/Mcompar_R_cmp_ge0012_cy<9> (B/R_cmp_ge0012)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux02001 (B/R_mux0200)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0013_lut<8> (B/Mcompar_R_cmp_ge0013_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0013_cy<8> (B/Mcompar_R_cmp_ge0013_cy<8>)
+     MUXCY:CI->O          40   0.459   1.440  B/Mcompar_R_cmp_ge0013_cy<9> (B/R_cmp_ge0013)
+     LUT3:I0->O            3   0.704   0.706  B/R_mux02161 (B/R_mux0216)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_R_cmp_ge0014_lut<8> (B/Mcompar_R_cmp_ge0014_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_R_cmp_ge0014_cy<8> (B/Mcompar_R_cmp_ge0014_cy<8>)
+     MUXCY:CI->O          40   0.459   1.440  B/Mcompar_R_cmp_ge0014_cy<9> (B/R_cmp_ge0014)
+     LUT3:I0->O            2   0.704   0.622  B/R_mux02321 (B/R_mux0232)
+     LUT4:I0->O            1   0.704   0.000  B/Mcompar_Q_0_cmp_ge0000_lut<8> (B/Mcompar_Q_0_cmp_ge0000_lut<8>)
+     MUXCY:S->O            1   0.464   0.000  B/Mcompar_Q_0_cmp_ge0000_cy<8> (B/Mcompar_Q_0_cmp_ge0000_cy<8>)
+     MUXCY:CI->O          25   0.459   1.339  B/Mcompar_Q_0_cmp_ge0000_cy<9> (B/Q_0_cmp_ge0000)
+     LUT4:I1->O            1   0.704   0.595  B/R_0_mux00002 (R<0>)
+     LUT2:I0->O            1   0.704   0.000  C/Mcompar_old_val_temp_1_cmp_ge0000_lut<1> (C/Mcompar_old_val_temp_1_cmp_ge0000_lut<1>)
+     MUXCY:S->O            1   0.464   0.000  C/Mcompar_old_val_temp_1_cmp_ge0000_cy<1> (C/Mcompar_old_val_temp_1_cmp_ge0000_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  C/Mcompar_old_val_temp_1_cmp_ge0000_cy<2> (C/Mcompar_old_val_temp_1_cmp_ge0000_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  C/Mcompar_old_val_temp_1_cmp_ge0000_cy<3> (C/Mcompar_old_val_temp_1_cmp_ge0000_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  C/Mcompar_old_val_temp_1_cmp_ge0000_cy<4> (C/Mcompar_old_val_temp_1_cmp_ge0000_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  C/Mcompar_old_val_temp_1_cmp_ge0000_cy<5> (C/Mcompar_old_val_temp_1_cmp_ge0000_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  C/Mcompar_old_val_temp_1_cmp_ge0000_cy<6> (C/Mcompar_old_val_temp_1_cmp_ge0000_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  C/Mcompar_old_val_temp_1_cmp_ge0000_cy<7> (C/Mcompar_old_val_temp_1_cmp_ge0000_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  C/Mcompar_old_val_temp_1_cmp_ge0000_cy<8> (C/Mcompar_old_val_temp_1_cmp_ge0000_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  C/Mcompar_old_val_temp_1_cmp_ge0000_cy<9> (C/Mcompar_old_val_temp_1_cmp_ge0000_cy<9>)
+     MUXCY:CI->O          36   0.459   1.438  C/Mcompar_old_val_temp_1_cmp_ge0000_cy<10> (C/old_val_temp_1_cmp_ge0000)
+     LUT4:I0->O            1   0.704   0.000  C/_old_val_temp_1<0>11 (C/_old_val_temp_1<0>1)
+     MUXCY:S->O            1   0.464   0.000  C/Msub__sub0000_cy<0> (C/Msub__sub0000_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<1> (C/Msub__sub0000_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<2> (C/Msub__sub0000_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<3> (C/Msub__sub0000_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<4> (C/Msub__sub0000_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<5> (C/Msub__sub0000_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<6> (C/Msub__sub0000_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<7> (C/Msub__sub0000_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<8> (C/Msub__sub0000_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<9> (C/Msub__sub0000_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<10> (C/Msub__sub0000_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<11> (C/Msub__sub0000_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<12> (C/Msub__sub0000_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<13> (C/Msub__sub0000_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<14> (C/Msub__sub0000_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  C/Msub__sub0000_cy<15> (C/Msub__sub0000_cy<15>)
+     MUXCY:CI->O           0   0.059   0.000  C/Msub__sub0000_cy<16> (C/Msub__sub0000_cy<16>)
+     XORCY:CI->O           8   0.804   0.761  C/Msub__sub0000_xor<17> (C/_sub0000<17>)
+     LUT4:I3->O            1   0.704   0.000  C/Mcompar_old_coded_out_o_6_cmp_ge0000_lut<4> (C/Mcompar_old_coded_out_o_6_cmp_ge0000_lut<4>)
+     MUXCY:S->O            4   0.864   0.762  C/Mcompar_old_coded_out_o_6_cmp_ge0000_cy<4> (C/old_coded_out_o_6_cmp_ge0000)
+     LUT3:I0->O            3   0.704   0.610  C/_old_coded_out_o_6<1>1 (C/_old_coded_out_o_6<1>)
+     LUT4:I1->O            4   0.704   0.666  C/_old_coded_out_o_10<2>1 (C/_old_coded_out_o_10<2>)
+     LUT3:I1->O            2   0.704   0.447  C/_old_coded_out_o_14<4>_SW1 (N20)
+     MUXF5:S->O            3   0.739   0.706  C/_old_coded_out_o_14<4>_f5 (C/_old_coded_out_o_14<4>)
+     LUT4:I0->O            1   0.704   0.000  C/coded_out_o<5>2 (C/coded_out_o<5>1)
+     MUXF5:I0->O           1   0.321   0.420  C/coded_out_o<5>_f5 (led_output_o_5_OBUF)
+     OBUF:I->O                 3.272          led_output_o_5_OBUF (led_output_o<5>)
+    ----------------------------------------
+    Total                     94.465ns (53.062ns logic, 41.403ns route)
+                                       (56.2% logic, 43.8% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 7.08 secs
+ 
+--> 
+
+Total memory usage is 4538260 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    6 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
+
